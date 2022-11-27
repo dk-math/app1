@@ -53,6 +53,14 @@ header {
   cursor : pointer;
 }
 
+.tab-item a {
+  text-decoration: none;
+}
+
+.tab-item a:link, a:visited, a:hover, a:active {
+  color: #666666;
+}
+
 .tab-item:hover {
   background-color: #f3e2b6ff;
 }
