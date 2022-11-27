@@ -7,10 +7,10 @@
     <title>WebBook</title>
     <script src="/javascripts/moment/moment.js"></script>
     <script src="/javascripts/moment/moment-with-locales.js"></script>
-    <script src="/javascripts/tab.js"></script>
-    <script src="/javascripts/modal.js"></script>
-    <script src="/javascripts/tweet.js"></script>
-    <script src="/javascripts/app.js"></script>
+    <script src="/javascripts/general/tab.js"></script>
+    <script src="/javascripts/tweet/modal.js"></script>
+    <script src="/javascripts/tweet/tweet.js"></script>
+    <script src="/javascripts/tweet/app.js"></script>
     <link href="/images/fontawesome/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
@@ -19,8 +19,8 @@
         <div id="header-upper">
             <div id="site-logo">本好きのためのSNS</div>
             <ul class="tabs">
-                <li id="top" class="tab-item active-item"><a href="/">トップ</a></li>
-                <li id="tweet" class="tab-item"><a href="/tweet">本のつぶやき</a></li>
+                <li id="top" class="tab-item"><a href="/">トップ</a></li>
+                <li id="tweet" class="tab-item active-item"><a href="/tweet">本のつぶやき</a></li>
                 <li id="bookshelf" class="tab-item"><a href="/bookshelf">みんなの本棚</a></li>
                 <li id="search" class="tab-item"><a href="/search">自分に合った本を探す</a></li>
             </ul>
@@ -28,37 +28,20 @@
         </div>
 
         <div id="header-lower">
-            <div id="top-space" class="header-space active-space"></div>
-
             <div id="tweet-space" class="header-space">
                 <div id="form-modal-btn" class="post-btn">投稿する
                     <span><img class="post-image" src="/images/post.png" alt="投稿画像"></span>
                 </div>
             </div>
-            <div id="bookshelf-space" class="header-space"></div>
-            <div id="searcg-space" class="header-space"></div>
         </div>
     </header>
 
     <div id="container">
-        <div class="tab-content is-show" id="top-content">
-            <div id="top-message">
-                <div id="top-left">
-                    <p id="top-title">Find<br>Yourself</p>
-                    <p id="top-comment">People who like books and those who don't,<br>please feel free to use it.</p>
-                </div>
-                <div id="top-right">
-                    <img id="top-image" src="/images/stackbooks.jpg" alt="トップ画像">
-                </div>
-            </div>
-        </div>
         <div class="tab-content" id="tweet-content">
             <div id="tweet-area">
                 <ul id="all-tweet"></ul>
             </div>
         </div>
-        <div class="tab-content" id="bookshelf-content"></div>
-        <div class="tab-content" id="search-content"></div>
     </div>
 
     <div id="form-modal" class="modal">

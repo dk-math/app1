@@ -84,24 +84,24 @@ header {
   cursor : pointer;
 }
 
-.header-space {
+/* .header-space {
 display: none;
-}
+} */
 
-.active-space {
+.header-space {
   display: flex;
   justify-content: flex-end;
 }
 
 .tab-content {
-  display: none;
+  /* display: none; */
   clear: both;
   overflow: hidden;
 }
 
-.is-show {
+/* .is-show {
 display: block;
-}
+} */
 
 #container {
   margin: 190px 0 0 0;
