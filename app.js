@@ -9,7 +9,6 @@ var usersRouter = require('./routes/users');
 var tweetRouter = require('./routes/tweet');
 var bookshelfRouter = require('./routes/bookshelf');
 var searchRouter = require('./routes/search');
-var loginRouter = require('./routes/login');
 
 var app = express();
 
@@ -28,7 +27,6 @@ app.use('/users', usersRouter);
 app.use('/tweet', tweetRouter);
 app.use('/bookshelf', bookshelfRouter);
 app.use('/search', searchRouter);
-app.use('/login', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

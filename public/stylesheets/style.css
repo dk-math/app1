@@ -84,24 +84,15 @@ header {
   cursor : pointer;
 }
 
-/* .header-space {
-display: none;
-} */
-
 .header-space {
   display: flex;
   justify-content: flex-end;
 }
 
 .tab-content {
-  /* display: none; */
   clear: both;
   overflow: hidden;
 }
-
-/* .is-show {
-display: block;
-} */
 
 .container {
   margin: 190px 0 0 0;
@@ -119,7 +110,7 @@ display: block;
 #login-form {
   text-align: center;
   background-color: #ffffff;
-  width: 30%;
+  width: 400px;
   margin: 0 auto;
   padding-top: 1%;
   padding-bottom: 4%;
@@ -138,7 +129,7 @@ display: block;
 
 .login-btn {
   width: 80%;
-  height: 40px;
+  height: 44px;
   background-color: #0c1d49ff;
   color: #ffffff;
   font-weight: bold;
@@ -180,7 +171,6 @@ display: block;
   margin-right: 64px;
   padding-left: 8px;
   vertical-align: middle;
-  /* width: 80px; */
   border-radius: 4px;
   font-size: 1.2em;
   font-weight: bold;
