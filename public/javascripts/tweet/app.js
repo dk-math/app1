@@ -8,11 +8,9 @@ window.addEventListener("load", () => {
     window.bookSite = {};
     bookSite.tweetList = [];
 
-    const tab = new Tab();
     const modal = new Modal();
     const tweet = new Tweet();
 
-    tab.setSwitchTabsEvent();
     modal.setFormModalOpenBtnEvent();
     modal.setFormModalCloseBtnEvent();
     modal.setFormModalCloseOutsideEvent();

@@ -4,7 +4,4 @@ window.addEventListener("load", () => {
         username = window.prompt("What is your name?");
         localStorage.setItem("username", username);
     }
-
-    const tab = new Tab();
-    tab.setSwitchTabsEvent();
 })
