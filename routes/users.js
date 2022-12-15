@@ -2,11 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { Client } = require("pg");
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
 router.get('/login', (req, res, next) => {
   const data = {
      title:'ログイン',
