@@ -2,6 +2,42 @@ const express = require('express');
 const router = express.Router();
 const { Client } = require("pg");
 
+router.get('/add', (req, res, next) => {
+  const data = {
+     title:'アカウント作成',
+     content:'ユーザー名とパスワードを入力してください。'
+  }
+  res.render('users/add', data);
+});
+
+router.post('/add', (req, res, next) => {
+  const client = new Client({
+    user: 'daisuke_kondo',
+    host: '127.0.0.1',
+    database: 'app1db',
+    password: 'gianluigi1978',
+    port: 5432
+  });
+  let nm = req.body.name;
+  let ps = req.body.pass;
+  const query = 'INSERT INTO member (id, name, pass) VALUES ($1, $2, $3)';
+  const values = [5, `'${nm}'`, `'${ps}'`];
+  client.connect()
+  .then(() => console.log("接続完了"))
+  .then(() => client.query(query, values))
+  .then(result => {
+    let back = req.session.back;
+    console.log(back);
+    if (back == null){
+      back = '/';
+    }
+    res.redirect(back);
+    console.log(result);
+  })
+  .catch(err => console.log(err))
+  .finally(() => client.end());
+});
+
 router.get('/login', (req, res, next) => {
   const data = {
      title:'ログイン',
@@ -18,15 +54,17 @@ router.post('/login', (req, res, next) => {
     password: 'gianluigi1978',
     port: 5432
   });
-  client.connect();
   let nm = req.body.name;
   let ps = req.body.pass;
   const query = `SELECT * FROM member WHERE member.name='${nm}' AND member.pass='${ps}'`;
-  client.query(query)
+  client.connect()
+  .then(() => console.log("接続完了"))
+  .then(() => client.query(query))
   .then(result => {
     if (result.rows.length != 0) {
       req.session.login = result;
       let back = req.session.back;
+      console.log(back);
       if (back == null){
         back = '/';
       }
@@ -41,10 +79,8 @@ router.post('/login', (req, res, next) => {
       client.end();
     }
   })
-  .catch(err => {
-      console.error(err.stack);
-      client.end();
-  });
+  .catch(err => console.log(err))
+  .finally(() => client.end());
 });
 
 module.exports = router;
