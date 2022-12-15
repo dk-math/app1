@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const { Client } = require("pg");
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  var client = new Client({
+  const client = new Client({
     user: 'daisuke_kondo',
     host: '127.0.0.1',
     database: 'app1db',

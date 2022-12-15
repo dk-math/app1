@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const { Client } = require("pg");
 
 /* GET users listing. */
@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', (req, res, next) => {
-  var data = {
+  const data = {
      title:'ログイン',
      content:'ユーザー名とパスワードを入力してください。'
   }
@@ -16,7 +16,7 @@ router.get('/login', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-  var client = new Client({
+  const client = new Client({
     user: 'daisuke_kondo',
     host: '127.0.0.1',
     database: 'app1db',
@@ -24,8 +24,12 @@ router.post('/login', (req, res, next) => {
     port: 5432
   });
   client.connect();
-  client.query("SELECT * FROM member where name=req.body.name AND pass=req.body.pass", (err, result) => {
-    if (result != null) {
+  let nm = req.body.name;
+  let ps = req.body.pass;
+  const query = `SELECT * FROM member WHERE member.name='${nm}' AND member.pass='${ps}'`;
+  client.query(query)
+  .then(result => {
+    if (result.rows.length != 0) {
       req.session.login = result;
       let back = req.session.back;
       if (back == null){
@@ -34,13 +38,17 @@ router.post('/login', (req, res, next) => {
       res.redirect(back);
       client.end();
     } else {
-      var data = {
+      const data = {
         title:'ログイン',
         content:'ユーザー名かパスワードに問題があります。再度入力してください。'
       }
       res.render('users/login', data);
       client.end();
     }
+  })
+  .catch(err => {
+      console.error(err.stack);
+      client.end();
   });
 });
 
