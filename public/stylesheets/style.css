@@ -73,7 +73,7 @@ header {
   color: #0c1d49ff;
 }
 
-#login {
+#login a {
   color: #ffffff;
   text-align: center;
   background-color: #0c1d49ff;
@@ -82,6 +82,9 @@ header {
   font-weight: bold;
   font-size: 1em;
   cursor : pointer;
+  padding: 7px 10px;
+  text-decoration: none;
+  display: block;
 }
 
 .header-space {
@@ -105,6 +108,11 @@ header {
 #login-title {
   text-align: center;
   color: #0c1d49ff;
+}
+
+#login-message {
+  text-align: center;
+  margin-top: 3%;
 }
 
 #login-form {
