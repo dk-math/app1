@@ -19,7 +19,7 @@ router.post('/add', [
     if (req.body.pass.match(/^(?=.*[a-zA-z])(?=.*[0-9])([a-zA-Z0-9]+$)/)) {
       return true;
     }
-  }).withMessage('パスワード は半角英字、数字を組み合わせて入力してください')
+  }).withMessage('パスワード は半角英字、数字を組み合わせてください')
 ], (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
