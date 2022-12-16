@@ -20,8 +20,8 @@ router.post('/add', (req, res, next) => {
   });
   let nm = req.body.name;
   let ps = req.body.pass;
-  const query = 'INSERT INTO member (id, name, pass) VALUES ($1, $2, $3)';
-  const values = [5, `'${nm}'`, `'${ps}'`];
+  const query = 'INSERT INTO member (name, pass) VALUES ($1, $2)';
+  const values = [nm, ps];
   client.connect()
   .then(() => console.log("接続完了"))
   .then(() => client.query(query, values))
