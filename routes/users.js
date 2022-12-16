@@ -1,41 +1,68 @@
 const express = require('express');
+const { check, validationResult } = require('express-validator');
 const router = express.Router();
 const { Client } = require("pg");
 
 router.get('/add', (req, res, next) => {
   const data = {
-     title:'アカウント作成',
-     content:'ユーザー名とパスワードを入力してください。'
+     title: 'アカウント作成',
+     content: 'ユーザー名とパスワードを入力してください。',
+     form: {name:'', pass:''}
   }
   res.render('users/add', data);
 });
 
-router.post('/add', (req, res, next) => {
-  const client = new Client({
-    user: 'daisuke_kondo',
-    host: '127.0.0.1',
-    database: 'app1db',
-    password: 'gianluigi1978',
-    port: 5432
-  });
-  let nm = req.body.name;
-  let ps = req.body.pass;
-  const query = 'INSERT INTO member (name, pass) VALUES ($1, $2)';
-  const values = [nm, ps];
-  client.connect()
-  .then(() => console.log("接続完了"))
-  .then(() => client.query(query, values))
-  .then(result => {
-    let back = req.session.back;
-    console.log(back);
-    if (back == null){
-      back = '/';
+router.post('/add', [
+  check('name').isLength({min:1, max: 20}).withMessage('ユーザー名 は1文字以上、20文字以下にしてください'),
+  check('pass').isLength({min: 8}).withMessage('パスワード は8文字以上にしてください'),
+  check('pass').custom((value, { req }) => {
+    if (req.body.pass.match(/^(?=.*[a-zA-z])(?=.*[0-9])([a-zA-Z0-9]+$)/)) {
+      return true;
     }
-    res.redirect(back);
-    console.log(result);
-  })
-  .catch(err => console.log(err))
-  .finally(() => client.end());
+  }).withMessage('パスワード は半角英字、数字を組み合わせて入力してください')
+], (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let result = '<ul class="text-danger">';
+    let resultArr = errors.array();
+    for (let i in resultArr) {
+      result += '<li>' + resultArr[i].msg + '</li>';
+    }
+    result += '</ul>';
+    const data = {
+      title: 'アカウント作成',
+      content: result,
+      form: req.body
+    }
+    res.render('users/add', data);
+  } else {
+    const client = new Client({
+      user: 'daisuke_kondo',
+      host: '127.0.0.1',
+      database: 'app1db',
+      password: 'gianluigi1978',
+      port: 5432
+    });
+    let nm = req.body.name;
+    let ps = req.body.pass;
+    const query = 'INSERT INTO member (name, pass) VALUES ($1, $2)';
+    const values = [nm, ps];
+    client.connect()
+    .then(() => console.log("接続完了"))
+    .then(() => client.query(query, values))
+    .then(result => {
+      let back = req.session.back;
+      console.log(back);
+      if (back == null){
+        back = '/';
+      }
+      res.redirect(back);
+      console.log(result);
+    })
+    .catch(err => console.log(err))
+    .finally(() => client.end());
+  }
+
 });
 
 router.get('/login', (req, res, next) => {
