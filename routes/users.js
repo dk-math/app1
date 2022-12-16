@@ -16,7 +16,7 @@ router.post('/add', [
   check('name').isLength({min:1, max: 20}).withMessage('ユーザー名 は1文字以上、20文字以下にしてください'),
   check('pass').isLength({min: 8}).withMessage('パスワード は8文字以上にしてください'),
   check('pass').custom((value, { req }) => {
-    if (req.body.pass.match(/^(?=.*[a-zA-z])(?=.*[0-9])([a-zA-Z0-9]+$)/)) {
+    if (value.match(/^(?=.*[a-zA-z])(?=.*[0-9])([a-zA-Z0-9]+$)/)) {
       return true;
     }
   }).withMessage('パスワード は半角英字、数字を組み合わせてください')
@@ -62,7 +62,6 @@ router.post('/add', [
     .catch(err => console.log(err))
     .finally(() => client.end());
   }
-
 });
 
 router.get('/login', (req, res, next) => {
