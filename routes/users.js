@@ -13,7 +13,7 @@ router.get('/add', (req, res, next) => {
 });
 
 router.post('/add', [
-  check('name').isLength({min:1, max: 20}).withMessage('ユーザー名 は1文字以上、20文字以下にしてください'),
+  check('name').isLength({min:1, max: 12}).withMessage('ユーザー名 は1文字以上、12文字以下にしてください'),
   check('pass').isLength({min: 8}).withMessage('パスワード は8文字以上にしてください'),
   check('pass').custom((value, { req }) => {
     if (value.match(/^(?=.*[a-zA-z])(?=.*[0-9])([a-zA-Z0-9]+$)/)) {

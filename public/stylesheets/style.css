@@ -30,6 +30,16 @@ header {
   padding-right: 64px;
 }
 
+#login-user a {
+  font-size: 1.2em;
+  color: #0c1d49ff;
+}
+
+#login-user span {
+  font-size: 0.8em;
+  color: #666666;
+}
+
 .tabs {
   padding: 0 0;
   display: flex;
