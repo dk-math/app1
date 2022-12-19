@@ -462,7 +462,7 @@ padding-right: 64px;
   justify-content: flex-end;
 }
 
-#post-confirm-btn {
+/* #post-confirm-btn {
   margin: 1em 0;
   left: 90%;
   width: 5.3em;
@@ -473,6 +473,20 @@ padding-right: 64px;
   box-shadow: 0.1em 0.1em 0.1em #666666;
   cursor: pointer;
   background-color: #0c1d49ff;
+} */
+
+#post-confirm-btn a {
+  color: #ffffff;
+  text-align: center;
+  background-color: #0c1d49ff;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px #666666;
+  font-weight: bold;
+  font-size: 1em;
+  cursor : pointer;
+  padding: 7px 10px;
+  text-decoration: none;
+  display: block;
 }
 
 .input {

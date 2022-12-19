@@ -67,7 +67,8 @@ router.post('/add', [
 router.get('/login', (req, res, next) => {
   const data = {
      title:'ログイン',
-     content:'ユーザー名とパスワードを入力してください。'
+     content:'ユーザー名とパスワードを入力してください。',
+     form: {name: '', pass: ''}
   }
   res.render('users/login', data);
 });
@@ -99,7 +100,8 @@ router.post('/login', (req, res, next) => {
     } else {
       const data = {
         title:'ログイン',
-        content:'ユーザー名かパスワードに問題があります。再度入力してください。'
+        content:'ユーザー名かパスワードに問題があります。再度入力してください。',
+        form: req.body
       }
       res.render('users/login', data);
       client.end();

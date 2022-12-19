@@ -12,10 +12,10 @@
     <p id="login-message"><%= content %></p>
     <form id="login-form" method="post" action="/users/login">
       <div class="login-form-group">
-        <input type="text" name="name" id="name" placeholder="  ユーザー名" class="login-input">
+        <input type="text" name="name" id="name" value="<%= form.name %>" placeholder="  ユーザー名" class="login-input">
       </div>
       <div class="login-form-group">
-        <input type="password" name="pass" id="pass" placeholder="  パスワード" class="login-input">
+        <input type="password" name="pass" id="pass" value="<%= form.pass %>" placeholder="  パスワード" class="login-input">
       </div>
       <input type="submit" value="ログイン" class="login-btn">
     </form>
