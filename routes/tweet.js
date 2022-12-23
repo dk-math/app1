@@ -19,8 +19,17 @@ router.get('/', (req, res, next) => {
   }
 });
 
-router.post('/', (req, res, next) => {
-
-})
+// router.post('/', (req, res, next) => {
+//   const client = new Client({
+//     user: 'daisuke_kondo',
+//     host: '127.0.0.1',
+//     database: 'app1db',
+//     password: 'gianluigi1978',
+//     port: 5432
+//   });
+//   let title = req.body.book-title;
+//   let ps = req.body.pass;
+//   if 
+// })
 
 module.exports = router;
