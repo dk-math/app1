@@ -449,7 +449,7 @@ padding-right: 64px;
   color: #ffcc00;
 }
 
-#book-comment {
+#bookComment {
   box-shadow: 0.1em 0.1em 0.1em #c0c0c0;
   border-radius: 0.5em;
   border: 1px solid #666666;
@@ -545,6 +545,7 @@ padding-right: 64px;
 }
 
 .confirm-modal-body {
+  font-weight: normal;
   font-size: 1.2em;
   align-items: center;
   color: #666666;
@@ -559,9 +560,7 @@ padding-right: 64px;
 }
 
 .confirm-cancel {
-  /* margin-left: 7%; */
-  width: 7em;
-  /* width: 100%; */
+  width: 6em;
   height: 2em;
   font-size: 1em;
   color: #666666;
@@ -574,11 +573,13 @@ padding-right: 64px;
 }
 
 #confirm-btn {
-  margin-left: 7%;
-  width: 7em;
+  box-sizing: border-box;
+  margin-left: 4%;
+  text-align: center;
+  width: 6em;
   height: 2em;
   font-size: 1em;
-  text-align: center;
+  color: #ffffff;
   background-color: #0c1d49ff;
   border-radius: 4px;
   box-shadow: 0.1em 0.1em 0.1em #666666;
@@ -586,9 +587,9 @@ padding-right: 64px;
   cursor : pointer;
 }
 
-#confirm-btn a {
+/* #confirm-btn input {
   color: #ffffff;
   line-height: 2em;
   border-radius: 4px;
   text-decoration: none;
-}
+} */

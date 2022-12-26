@@ -57,7 +57,6 @@ router.post('/add', [
         back = '/';
       }
       res.redirect(back);
-      console.log(result);
     })
     .catch(err => console.log(err))
     .finally(() => client.end());

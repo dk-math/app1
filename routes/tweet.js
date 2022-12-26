@@ -1,5 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const { check, validationResult } = require('express-validator');
+const router = express.Router();
+const { Client } = require("pg");
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -19,17 +21,34 @@ router.get('/', (req, res, next) => {
   }
 });
 
-// router.post('/', (req, res, next) => {
-//   const client = new Client({
-//     user: 'daisuke_kondo',
-//     host: '127.0.0.1',
-//     database: 'app1db',
-//     password: 'gianluigi1978',
-//     port: 5432
-//   });
-//   let title = req.body.book-title;
-//   let ps = req.body.pass;
-//   if 
-// })
+router.post('/', (req, res, next) => {
+  const client = new Client({
+    user: 'daisuke_kondo',
+    host: '127.0.0.1',
+    database: 'app1db',
+    password: 'gianluigi1978',
+    port: 5432
+  });
+  let userId = req.session.login.rows[0].id;
+  let userName = req.session.login.rows[0].name;
+  let title = req.body.bookTitle;
+  let rate = req.body.rate;
+  let comment = req.body.bookComment;
+  const query = 'INSERT INTO tweet (userid, username, booktitle, bookrate, bookcomment) VALUES ($1, $2, $3, $4, $5)';
+  const values = [userId, userName, title, rate, comment];
+  client.connect()
+  .then(() => console.log("接続完了"))
+  .then(() => client.query(query, values))
+  .then(result => {
+    let back = req.session.back;
+    console.log(back);
+    if (back == null){
+      back = '/tweet';
+    }
+    res.redirect(back);
+  })
+  .catch(err => console.log(err))
+  .finally(() => client.end());
+});
 
 module.exports = router;

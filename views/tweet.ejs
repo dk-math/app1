@@ -48,12 +48,13 @@
                 <h2>本のつぶやきを投稿する</h2>
                 <span class="form-close">X</span>
             </div>
-            <form id="post-form" action="index.html" method="post" enctype="multipart/form-data">
+            <!-- <form id="post-form" action="/tweet" method="post" enctype="multipart/form-data"> -->
+            <form id="post-form" action="/tweet" method="post">
                 <div class="modal-body">
                     <div id="book-information">
                         <div class="form-input">
                             <p>本のタイトル</p>
-                            <input type="text" id="book-title" size="15em" name="book-title" class="input">
+                            <input type="text" id="bookTitle" size="15em" name="bookTitle" class="input">
                             <input type="text" name="dummy" style="display: none;"/>
                         </div>
                         <div class="form-input">
@@ -79,30 +80,33 @@
                     </div>
                     <div class="form-input">
                         <p>この本のつぶやき</p>
-                        <textarea  rows="3" cols="60" id="book-comment" name="book-comment" class="input"></textarea>
+                        <textarea  rows="3" cols="60" id="bookComment" name="bookComment" class="input"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="post-confirm-btn">投稿する</button>
                 </div>
+
+                <div id="demo-confirm-modal" class="confirm-modal">
+                    <div class="confirm-modal-content">
+                        <div class="confirm-modal-header">
+                            投稿を確定する
+                        </div>
+                        <div class="confirm-modal-body">
+                            <p>誹謗中傷に当たる表現がないことを確認してください。<br>みんなが楽しめるようマナーを守りましょう。</p>
+                        </div>
+                        <div class="confirm-modal-footer">
+                            <button class="confirm-cancel">キャンセル</button>
+                            <!-- <div id="confirm-btn"><a href="/tweet">投稿する</a></div> -->
+                            <input type="submit" value="投稿する" id="confirm-btn">
+                        </div>
+                    </div>
+                </div>
+
             </form>
         </div>
     </div>
 
-    <div id="demo-confirm-modal" class="confirm-modal">
-        <div class="confirm-modal-content">
-            <div class="confirm-modal-header">
-                投稿を確定する
-            </div>
-            <div class="confirm-modal-body">
-                <p>誹謗中傷に当たる表現がないことを確認してください。<br>みんなが楽しめるようマナーを守りましょう。</p>
-            </div>
-            <div class="confirm-modal-footer">
-                <button class="confirm-cancel">キャンセル</button>
-                <div id="confirm-btn"><a href="/tweet">ログイン</a></div>
-            </div>
-        </div>
-    </div>
 
     <footer></footer>
   </body>
