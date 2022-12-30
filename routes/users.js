@@ -89,7 +89,6 @@ router.post('/login', (req, res, next) => {
   .then(result => {
     if (result.rows.length != 0) {
       req.session.login = result;
-      console.log(result);
       let back = req.session.back;
       if (back == null){
         back = '/';

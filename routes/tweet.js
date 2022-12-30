@@ -3,8 +3,19 @@ const { check, validationResult } = require('express-validator');
 const router = express.Router();
 const { Client } = require("pg");
 
+function loginCheck(req,res) {
+  if (req.session.login == null) {
+    req.session.back = '/tweet';
+    res.redirect('/users/login');
+    return true;
+  } else {
+    return false;
+  }
+}
+
 /* GET home page. */
 router.get('/', (req, res, next) => {
+  if (loginCheck(req, res)) {return};
   if (req.session.login != null) {
     let userName = req.session.login.rows[0].name;
     let login = `<div id="login-user"><span>ようこそ </span><a href="#">${userName}</a><span> さん</span></div>`
@@ -22,6 +33,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+  if (loginCheck(req, res)) {return};
   const client = new Client({
     user: 'daisuke_kondo',
     host: '127.0.0.1',
