@@ -34,12 +34,18 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   if (loginCheck(req, res)) {return};
-  const client = new Client({
-    user: 'daisuke_kondo',
-    host: '127.0.0.1',
-    database: 'app1db',
-    password: 'gianluigi1978',
-    port: 5432
+  // const client = new Client({
+  //   user: 'daisuke_kondo',
+  //   host: '127.0.0.1',
+  //   database: 'app1db',
+  //   password: 'gianluigi1978',
+  //   port: 5432
+  // });
+  const client= new Client({
+    connectionString: process.env.DB_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
   });
   let userId = req.session.login.rows[0].id;
   let userName = req.session.login.rows[0].name;

@@ -36,12 +36,18 @@ router.post('/add', [
     }
     res.render('users/add', data);
   } else {
-    const client = new Client({
-      user: 'daisuke_kondo',
-      host: '127.0.0.1',
-      database: 'app1db',
-      password: 'gianluigi1978',
-      port: 5432
+    // const client = new Client({
+    //   user: 'daisuke_kondo',
+    //   host: '127.0.0.1',
+    //   database: 'app1db',
+    //   password: 'gianluigi1978',
+    //   port: 5432
+    // });
+    const client= new Client({
+      connectionString: process.env.DB_URL,
+      ssl: {
+        rejectUnauthorized: false
+      }
     });
     let nm = req.body.name;
     let ps = req.body.pass;
@@ -73,12 +79,18 @@ router.get('/login', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-  const client = new Client({
-    user: 'daisuke_kondo',
-    host: '127.0.0.1',
-    database: 'app1db',
-    password: 'gianluigi1978',
-    port: 5432
+  // const client = new Client({
+  //   user: 'daisuke_kondo',
+  //   host: '127.0.0.1',
+  //   database: 'app1db',
+  //   password: 'gianluigi1978',
+  //   port: 5432
+  // });
+  const client= new Client({
+    connectionString: process.env.DB_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
   });
   let nm = req.body.name;
   let ps = req.body.pass;
