@@ -1,6 +1,7 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
 const router = express.Router();
+require('dotenv').config();
 const { Client } = require("pg");
 
 router.get('/add', (req, res, next) => {
